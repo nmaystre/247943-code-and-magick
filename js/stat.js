@@ -29,20 +29,13 @@ window.renderStatistics = function (ctx, names, times) {
 
   var histogramHeight = 150;
   var step = histogramHeight / (max - 0);
-  var barWidth = 40; // px;
-  var indent = 50;    // px;
-  var initialX = 110; // px;
-  var initialY = 20;  // px;
+  var barWidth = 40;
+  var indent = 50;
+  var initialX = 110;
+  var initialY = 20;
 
-  var histogramX = initialX + 50; // px;
-  var histogramY = initialY + 70;  // px;
-
-
-  // ctx.textBaseline = 'top'; // положение надписи от левого верхнего угла
-  // for(var i = 0; i < times.length; i++) {
-  //     ctx.fillRect(initialX, initialY + indent * i, times[i] * step, barHeigth);
-  //     ctx.fillText(names[i], initialX + histogramWidth, initialY + indent * i);
-  // }
+  var histogramX = initialX + 50;
+  var histogramY = initialY + 70;
 
   ctx.textBaseline = 'bottom';
   for (var i = 0; i < times.length; i++) {
@@ -59,6 +52,4 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(names[i], histogramX + (barWidth + indent) * i, (histogramY + 30) + histogramHeight);
     ctx.fillText(Math.ceil(times[i]), histogramX + (barWidth + indent) * i, histogramHeight - times[i] * step + histogramY);
   }
-
-
 };
