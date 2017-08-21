@@ -21,31 +21,35 @@ var createElement = function (template) {
   return newElement;
 };
 
-var fillProperty = function (element, propSelector, property, value) {
-  var currentProperty = element.querySelector(propSelector);
+var fillProperty = function (propSelector, property, value) {
   switch (property) {
     case 'text':
-      currentProperty.textContent = value;
+      propSelector.textContent = value;
       break;
     case 'color':
-      currentProperty.style.fill = value;
+      propSelector.style.fill = value;
       break;
   }
 };
 
 var fragment = document.createDocumentFragment();
 
-for (var i = 0; i < 4; i++) {
+var wizardElements = function() {
   var name = WIZARD_NAMES[getRandomIndex(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[getRandomIndex(WIZARD_SURNAMES)];
   var coatColor = WIZARD_COATS[getRandomIndex(WIZARD_COATS)];
   var eyesColor = WIZARD_EYES[getRandomIndex(WIZARD_EYES)];
+  return [name, coatColor, eyesColor];
+}
+
+for (var i = 0; i < 4; i++) {
   var wizardElement = createElement(similarWizardTemplate);
-  fillProperty(wizardElement, '.setup-similar-label', 'text', name);
-  fillProperty(wizardElement, '.wizard-coat', 'color', coatColor);
-  fillProperty(wizardElement, '.wizard-eyes', 'color', eyesColor);
+  var qwerty = wizardElements();
+  fillProperty(wizardElement.querySelector('.setup-similar-label'), 'text', qwerty[0]);
+  fillProperty(wizardElement.querySelector('.wizard-coat'), 'color', qwerty[1]);
+  fillProperty(wizardElement.querySelector('.wizard-eyes'), 'color',qwerty[2]);
   fragment.appendChild(wizardElement);
 }
-similarListElement.appendChild(fragment);
 
+similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
