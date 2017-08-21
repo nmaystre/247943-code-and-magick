@@ -34,19 +34,21 @@ var fillProperty = function (propSelector, property, value) {
 
 var fragment = document.createDocumentFragment();
 
-var wizardElements = function() {
-  var name = WIZARD_NAMES[getRandomIndex(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[getRandomIndex(WIZARD_SURNAMES)];
-  var coatColor = WIZARD_COATS[getRandomIndex(WIZARD_COATS)];
-  var eyesColor = WIZARD_EYES[getRandomIndex(WIZARD_EYES)];
-  return [name, coatColor, eyesColor];
-}
+var randomWizards = [];
 
 for (var i = 0; i < 4; i++) {
+  randomWizards[i] = {
+    name: WIZARD_NAMES[getRandomIndex(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[getRandomIndex(WIZARD_SURNAMES)],
+    coatColor: WIZARD_COATS[getRandomIndex(WIZARD_COATS)],
+    eyesColor: WIZARD_EYES[getRandomIndex(WIZARD_EYES)]
+  };
+}
+
+for (i = 0; i < 4; i++) {
   var wizardElement = createElement(similarWizardTemplate);
-  var qwerty = wizardElements();
-  fillProperty(wizardElement.querySelector('.setup-similar-label'), 'text', qwerty[0]);
-  fillProperty(wizardElement.querySelector('.wizard-coat'), 'color', qwerty[1]);
-  fillProperty(wizardElement.querySelector('.wizard-eyes'), 'color',qwerty[2]);
+  fillProperty(wizardElement.querySelector('.setup-similar-label'), 'text', randomWizards[i].name);
+  fillProperty(wizardElement.querySelector('.wizard-coat'), 'color', randomWizards[i].coatColor);
+  fillProperty(wizardElement.querySelector('.wizard-eyes'), 'color', randomWizards[i].eyesColor);
   fragment.appendChild(wizardElement);
 }
 
