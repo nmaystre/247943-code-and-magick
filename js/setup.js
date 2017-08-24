@@ -97,7 +97,7 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-setupSubmit.addEventListener('click', function () {
+setupSubmit.addEventListener('submit', function () {
   // evt.preventDefault();
   closePopup();
 });
