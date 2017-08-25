@@ -61,18 +61,18 @@ var wizardEyes = setup.querySelector('.wizard-eyes');
 var wizardFireball = setup.querySelector('.setup-fireball-wrap');
 
 
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
 };
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
@@ -98,15 +98,25 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 setupSubmit.addEventListener('submit', function () {
-  // evt.preventDefault();
   closePopup();
 });
 
 setupSubmit.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
-    // evt.preventDefault();
     closePopup();
   }
+});
+
+document.addEventListener('keydown', function (evt) {
+  var input = document.querySelector('.setup-user-name');
+  if (evt.keyCode === ESC_KEYCODE) {
+    if (input === document.activeElement) {
+      return false;
+    } else {
+      closePopup();
+    }
+  }
+  return true;
 });
 
 wizardCoat.addEventListener('click', function () {
