@@ -110,13 +110,10 @@ setupSubmit.addEventListener('keydown', function (evt) {
 document.addEventListener('keydown', function (evt) {
   var input = document.querySelector('.setup-user-name');
   if (evt.keyCode === ESC_KEYCODE) {
-    if (input === document.activeElement) {
-      return false;
-    } else {
+    if (input !== document.activeElement) {
       closePopup();
     }
   }
-  return true;
 });
 
 wizardCoat.addEventListener('click', function () {
